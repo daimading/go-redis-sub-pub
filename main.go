@@ -14,7 +14,7 @@ func main() {
 	defer redisClient.Close()
 
 	// 指定通道
-	pubSub := redisClient.Subscribe("mychannel1")
+	pubSub := redisClient.Subscribe("myChannel")
 	defer pubSub.Close()
 
 	go func() {
@@ -27,7 +27,7 @@ func main() {
 	}()
 
 	// channel 通道  message 放入通道中订阅的信息
-	err := redisClient.Publish("mychannel1", "hello word ！！！").Err()
+	err := redisClient.Publish("myChannel", "hello word ！！！").Err()
 	if err != nil {
 		panic(err)
 	}
