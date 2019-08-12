@@ -1,16 +1,15 @@
 package main
 
 import (
-	"git.dev.tencent.com/yctc/golang-basic-framework.git/core/database"
-	"git.dev.tencent.com/yctc/golang-basic-framework.git/core/log"
 	"github.com/jinzhu/gorm"
-	"git.dev.tencent.com/yctc/golang-basic-framework.git/core/http_server/server"
 	"fmt"
-	"git.dev.tencent.com/yctc/golang-basic-framework.git/core/cache"
+	"github.com/go-redis/redis"
 )
 
 func main() {
-	redisClient := cache.GetCache()
+	redisClient := redis.NewClient(&redis.Options{
+		Addr:     "127.0.0.1:6379",
+	})
 	defer redisClient.Close()
 
 	// 指定通道
